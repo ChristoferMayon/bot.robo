@@ -1,0 +1,24 @@
+file:///C:/Users/Christofer%20Mayon/Desktop/pagamento/botzap/api/node/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50
+            throw new Boom('Connection Closed', { statusCode: DisconnectReason.connectionClosed });
+                  ^
+
+Error: Connection Closed
+    at sendRawMessage (file:///C:/Users/Christofer%20Mayon/Desktop/pagamento/botzap/api/node/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)
+    at sendNode (file:///C:/Users/Christofer%20Mayon/Desktop/pagamento/botzap/api/node/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)
+    at file:///C:/Users/Christofer%20Mayon/Desktop/pagamento/botzap/api/node/node_modules/@whiskeysockets/baileys/lib/Socket/messages-send.js:729:19
+    at async file:///C:/Users/Christofer%20Mayon/Desktop/pagamento/botzap/api/node/node_modules/@whiskeysockets/baileys/lib/Utils/auth-utils.js:220:36 {
+  data: null,
+  isBoom: true,
+  isServer: false,
+  output: {
+    statusCode: 428,
+    payload: {
+      statusCode: 428,
+      error: 'Precondition Required',
+      message: 'Connection Closed'
+    },
+    headers: {}
+  }
+}
+
+Node.js v22.21.0

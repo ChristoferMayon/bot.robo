@@ -1,0 +1,23 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# WhatsApp Sessions (Não subir para o GitHub!)
+botzap_auth_info/
+api/node/botzap_auth_info/
+trackLinks.json
+api/node/trackLinks.json
+
+# PHP / Uploads
+# Descomente a linha abaixo se quiser que a pasta de uploads não suba
+# uploads/
+
+# Script de Importação Temporário (Segurança)
+import_railway.php
+sync_images.php
+list_db_images.php
+
+# OS
+.DS_Store
+Thumbs.db

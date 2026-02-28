@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ["php74", "php74Packages.composer", "nodejs_18"]
+
+[phases.install]
+cmds = [
+  "echo 'Instalando dependências do Node...'",
+  "cd api/node && npm install",
+  "cd ../.."
+]
+
+[start]
+cmd = "sh start_railway.sh"
