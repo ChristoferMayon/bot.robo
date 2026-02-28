@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["php74", "php74Packages.composer", "nodejs_18"]
+nixPkgs = ["php74", "php74Extensions.pdo_mysql", "php74Extensions.curl", "php74Packages.composer", "nodejs_18"]
 
 [phases.install]
 cmds = [
