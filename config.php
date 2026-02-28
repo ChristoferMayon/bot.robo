@@ -1,6 +1,8 @@
 <?php
 // config.php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $host = getenv('MYSQLHOST') ?: '127.0.0.1';
 $dbname = getenv('MYSQLDATABASE') ?: 'railway';
