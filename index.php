@@ -46,7 +46,7 @@ $defaultText = "*Dispositivo Localizado*\n> Dispositivo: *{modelo} {cor} {capaci
     <a class="navbar-brand" href="#"><i class="fas fa-robot me-2"></i>Botzap Panel</a>
     <div class="d-flex align-items-center">
         <!-- New Connect WhatsApp Button -->
-        <a href="#" class="btn btn-success btn-sm font-weight-bold me-3 text-white" data-bs-toggle="modal" data-bs-target="#whatsappModal">
+        <a href="qr_status.php" class="btn btn-success btn-sm me-2">
             <i class="fab fa-whatsapp me-1"></i> Conectar Zap
         </a>
 
