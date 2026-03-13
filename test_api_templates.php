@@ -19,7 +19,8 @@
  */
 
 // 1. CONFIGURAÇÕES (Preencha com seus dados)
-$api_url = "http://localhost:3000";
+require_once 'config.php';
+$api_url = BOT_API_URL;
 $api_key = "botzp_75ee8182fd0c60022f3f25f665806c27"; // Sua API Key válida (ID 2Admin)
 $target_number = "554195457772"; // Número de destino
 $session_id = "MinhaAPIKey"; // Nome da instância conectada
