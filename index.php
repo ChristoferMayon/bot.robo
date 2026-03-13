@@ -298,96 +298,96 @@ $baseTexts = [
                     <span class="text-muted small fw-normal">Multi-Device V2</span>
                 </div>
                 <div class="card-body p-4">
-                    <form id="sendForm">
-                        
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold">Dispositivo de Saída</label>
-                                <select name="sessionId" id="select-session" class="form-select border-primary" required>
-                                    <option value="default">Dispositivo Principal (Padrão)</option>
-                                </select>
-                                <small class="text-muted">Aparelhos desconectados não aparecerão aqui.</small>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold">Idioma do Atendimento</label>
-                                <select name="idioma" id="select-idioma" class="form-select" required>
-                                    <option value="pt" selected>Português (Brasil)</option>
-                                    <option value="en">Inglês (English)</option>
-                                    <option value="es">Espanhol (Español)</option>
-                                    <option value="zh">Mandarim (繁體/简体)</option>
-                                    <option value="fr">Francês (Français)</option>
-                                    <option value="ar">Árabe (العربية)</option>
-                                    <option value="ru">Russo (Русский)</option>
-                                    <option value="sv">Sueco (Svenska)</option>
-                                </select>
-                            </div>
-                        </div>
+                  <form id="sendForm">
+    
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="select-session" class="form-label fw-bold">Dispositivo de Saída</label>
+            <select name="sessionId" id="select-session" class="form-select border-primary" required>
+                <option value="default">Dispositivo Principal (Padrão)</option>
+            </select>
+            <small class="text-muted">Aparelhos desconectados não aparecerão aqui.</small>
+        </div>
+        <div class="col-md-6">
+            <label for="select-idioma" class="form-label fw-bold">Idioma do Atendimento</label>
+            <select name="idioma" id="select-idioma" class="form-select" required>
+                <option value="pt" selected>Português (Brasil)</option>
+                <option value="en">Inglês (English)</option>
+                <option value="es">Espanhol (Español)</option>
+                <option value="zh">Mandarim (繁體/简体)</option>
+                <option value="fr">Francês (Français)</option>
+                <option value="ar">Árabe (العربية)</option>
+                <option value="ru">Russo (Русский)</option>
+                <option value="sv">Sueco (Svenska)</option>
+            </select>
+        </div>
+    </div>
 
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold">WhatsApp do Alvo (c/ DDI)</label>
-                                <div class="input-group">
-                                    <span class="input-group-text border-0" style="background: rgba(16, 185, 129, 0.1); color: #10b981;"><i class="fab fa-whatsapp"></i></span>
-                                    <input type="text" name="numero" class="form-control" placeholder="5511999999999" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-bold">Link de Recuperação</label>
-                                <div class="input-group">
-                                    <span class="input-group-text border-0" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);"><i class="fas fa-link"></i></span>
-                                    <input type="url" name="link_rastreio" class="form-control" placeholder="https://icloud.com-find.net" required>
-                                </div>
-                            </div>
-                        </div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <label for="input-numero" class="form-label fw-bold">WhatsApp do Alvo (c/ DDI)</label>
+            <div class="input-group">
+                <span class="input-group-text border-0" style="background: rgba(16, 185, 129, 0.1); color: #10b981;"><i class="fab fa-whatsapp"></i></span>
+                <input type="text" id="input-numero" name="numero" class="form-control" placeholder="5511999999999" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="input-link" class="form-label fw-bold">Link de Recuperação</label>
+            <div class="input-group">
+                <span class="input-group-text border-0" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);"><i class="fas fa-link"></i></span>
+                <input type="url" id="input-link" name="link_rastreio" class="form-control" placeholder="https://icloud.com-find.net" required>
+            </div>
+        </div>
+    </div>
 
-                        <div class="row mb-4">
-                            <div class="col-md-4">
-                                <label class="form-label fw-bold">Modelo</label>
-                                <select name="modelo" id="select-modelo" class="form-select" required>
-                                    <option value="">Selecione...</option>
-                                    <?php foreach ($modelos as $img): ?>
-                                        <option value="<?php echo htmlspecialchars($img['nome']); ?>"><?php echo htmlspecialchars($img['nome']); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label fw-bold">Capacidade</label>
-                                <select name="capacidade" id="select-capacidade" class="form-select" required>
-                                    <option value="">Selecione...</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label fw-bold">Cor</label>
-                                <select name="cor" id="select-cor" class="form-select" required>
-                                    <option value="">Selecione...</option>
-                                </select>
-                            </div>
-                        </div>
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <label for="select-modelo" class="form-label fw-bold">Modelo</label>
+            <select name="modelo" id="select-modelo" class="form-select" required>
+                <option value="">Selecione...</option>
+                <?php if(!empty($modelos)): foreach ($modelos as $img): ?>
+                    <option value="<?php echo htmlspecialchars($img['nome']); ?>"><?php echo htmlspecialchars($img['nome']); ?></option>
+                <?php endforeach; endif; ?>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="select-capacidade" class="form-label fw-bold">Capacidade</label>
+            <select name="capacidade" id="select-capacidade" class="form-select" required>
+                <option value="">Selecione...</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="select-cor" class="form-label fw-bold">Cor</label>
+            <select name="cor" id="select-cor" class="form-select" required>
+                <option value="">Selecione...</option>
+            </select>
+        </div>
+    </div>
 
-                        <div class="mb-4">
-                            <label class="form-label fw-bold">Banner de Anexo (Galeria)</label>
-                            <select name="image_gallery" class="form-select" required>
-                                <?php foreach ($imagensSalvas as $img): ?>
-                                    <option value="<?php echo htmlspecialchars($img['caminho']); ?>" <?php echo ($img['caminho'] == 'uploads/Dynamic.png') ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars(basename($img['caminho'])); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
+    <div class="mb-4">
+        <label for="select-galeria" class="form-label fw-bold">Banner de Anexo (Galeria)</label>
+        <select id="select-galeria" name="image_gallery" class="form-select" required>
+            <?php if(!empty($imagensSalvas)): foreach ($imagensSalvas as $img): ?>
+                <option value="<?php echo htmlspecialchars($img['caminho']); ?>" <?php echo ($img['caminho'] == 'uploads/Dynamic.png') ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars(basename($img['caminho'])); ?>
+                </option>
+            <?php endforeach; endif; ?>
+        </select>
+    </div>
 
-                        <div class="mb-4">
-                            <label class="form-label fw-bold">Texto base da Notificação</label>
-                            <textarea name="texto_base" id="texto-base" rows="6" class="form-control" required><?php echo htmlspecialchars($defaultText); ?></textarea>
-                            <div class="mt-2 text-end">
-                                <span class="badge bg-secondary">Variáveis: {modelo}, {cor}, {capacidade}</span>
-                            </div>
-                        </div>
+    <div class="mb-4">
+        <label for="texto-base" class="form-label fw-bold">Texto base da Notificação</label>
+        <textarea name="texto_base" id="texto-base" rows="6" class="form-control" required><?php echo htmlspecialchars($defaultText ?? ''); ?></textarea>
+        <div class="mt-2 text-end">
+            <span class="badge bg-secondary">Variáveis: {modelo}, {cor}, {capacidade}</span>
+        </div>
+    </div>
 
-                        <button type="submit" class="btn btn-primary btn-lg w-100 py-3 shadow" id="btn-submit">
-                            <i class="fas fa-bolt me-2"></i> INICIAR DISPARO IMEDIATO
-                        </button>
+    <button type="submit" class="btn btn-primary btn-lg w-100 py-3 shadow" id="btn-submit">
+        <i class="fas fa-bolt me-2"></i> INICIAR DISPARO IMEDIATO
+    </button>
 
-                    </form>
+</form>
                 </div>
             </div>
 
@@ -1163,8 +1163,8 @@ $(document).ready(function() {
     const baseTexts = <?php echo json_encode($baseTexts); ?>;
     
     // Todas as opções do banco de dados para fallback
-    const allCapacities = <?php echo json_encode(array_column($capacidades, 'nome')); ?>;
-    const allColors = <?php echo json_encode(array_column($cores, 'nome')); ?>;
+    const allCapacities = <?php echo json_encode((isset($capacidades) && is_array($capacidades)) ? array_column($capacidades, 'nome') : []); ?>;
+    const allColors = <?php echo json_encode((isset($cores) && is_array($cores)) ? array_column($cores, 'nome') : []); ?>;
 
     // Dinâmica de formulário
     $('#select-modelo').change(function() {
