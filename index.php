@@ -425,8 +425,6 @@ $baseTexts = [
                         </thead>
                         <tbody>
                             <?php 
-                            $loggedId = $_SESSION['user_id'] ?? 0;
-                            $isAdmin = ($loggedId == 2);
                             $history = []; // Initialize $history
                             try {
                                 if ($isAdmin) {
