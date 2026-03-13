@@ -6,7 +6,8 @@
 session_start();
 
 // 1. CONFIGURAÇÕES
-$api_url = "http://localhost:3000";
+require_once 'config.php';
+$api_url = BOT_API_URL;
 $api_key = "botzp_75ee8182fd0c60022f3f25f665806c27"; 
 
 // PEGA O NOME DO CLIENTE PELA URL OU USA UM PADRÃO (SIMULAÇÃO MULTI-CLIENTE)

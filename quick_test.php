@@ -1,7 +1,8 @@
 <?php
-$api_url = "http://localhost:3000/api/send";
+require_once 'config.php';
+$api_url = BOT_API_URL . "/api/send";
 $payload = [
-    "sessionId" => "MInha",
+    "sessionId" => "MinhaAPIKey",
     "number" => "554195457772",
     "message" => "Teste de preview do iCloud (Pequeno/Quadrado)",
     "trackLink" => "https://icloud.com/find"
