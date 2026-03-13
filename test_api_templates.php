@@ -122,7 +122,7 @@ if (true) {
     
     $resSend = apiRequest('POST', '/api/send', $payload, $api_key);
     if ($resSend['code'] === 200) {
-        echo "MENSAGEM ENVIADA COM SUCESSO ✅\n";
+        echo "MENSAGEM ENVIADA COM SUCESSO! Chris ✅\n";
     } else {
         echo "FALHA AO ENVIAR: \n";
         print_r($resSend['body']);
