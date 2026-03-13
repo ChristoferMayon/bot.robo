@@ -31,7 +31,28 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     exit;
 }
 
-// Ler e processar o arquivo SQL em comandos individuais
+// 1. Garantir que as tabelas de sistema existam antes da importação principal
+try {
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `api_keys` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `user_id` int(11) NOT NULL,
+        `nome` varchar(100) DEFAULT 'Minha Chave',
+        `chave` varchar(255) NOT NULL,
+        `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `chave` (`chave`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+    
+    $pdo->exec("CREATE TABLE IF NOT EXISTS `user_configs` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `user_id` int(11) NOT NULL,
+        `webhook_url` varchar(255) DEFAULT NULL,
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `user_id` (`user_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+} catch (PDOException $e) { $error = "Erro ao preparar tabelas base: " . $e->getMessage(); }
+
+// 2. Ler e processar o arquivo SQL em comandos individuais
 $commands = [];
 if (file_exists($sqlFile)) {
     $content = file_get_contents($sqlFile);
@@ -41,7 +62,6 @@ if (file_exists($sqlFile)) {
     $content = preg_replace('/\/\*.*?\*\//s', '', $content);
     
     // Separar comandos por ; MAS mantendo integridade de strings
-    // Usamos uma técnica mais robusta para não quebrar mensagens que contenham ;
     $tempCommands = preg_split('/;(?=(?:[^\']*\'[^\']*\')*[^\']*$)/', $content);
 
     foreach ($tempCommands as $cmd) {
