@@ -97,22 +97,46 @@ try {
         $errorMessageAPI = "O dispositivo selecionado ($sessionId) não está conectado.";
     }
 
-    if ($apiSuccess) {
-         // Log to database
-         $stmtLog = $pdo->prepare("INSERT INTO mensagens_enviadas (user_id, session_id, numero, modelo, capacidade, cor, tipo_imagem, caminho_link, link_rastreio, texto_final, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-         $stmtLog->execute([
-            $user_id, $sessionId, $numero, $modelo, $capacidade, $cor, 'local', $imagePathForDB, $linkRastreio, $textoFinal, 'ativo'
-         ]);
-        
-         echo json_encode([
-            'status' => 'success', 
-            'message' => 'Disparo efetuado com sucesso via Aparelho: ' . $sessionId
-         ]);
-    } else {
-         $fullDetail = "Cód: $httpCode | cURL: $curlError | Resposta: " . substr($nodeResponse, 0, 100);
-         throw new Exception($fullDetail);
-    }
-    
+ if ($apiSuccess) {
+
+    // Log no banco
+    $stmtLog = $pdo->prepare("
+        INSERT INTO mensagens_enviadas 
+        (user_id, session_id, numero, modelo, capacidade, cor, tipo_imagem, caminho_link, link_rastreio, texto_final, status) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ");
+
+    $stmtLog->execute([
+        $user_id,
+        $sessionId,
+        $numero,
+        $modelo,
+        $capacidade,
+        $cor,
+        'local',
+        $imagePathForDB,
+        $linkRastreio,
+        $textoFinal,
+        'ativo'
+    ]);
+
+    echo json_encode([
+        'status' => 'success',
+        'message' => 'Disparo efetuado com sucesso via Aparelho: ' . $sessionId
+    ]);
+
+} else {
+
+    $fullDetail = "Cód: $httpCode | cURL: $curlError | Resposta: " . substr($nodeResponse, 0, 100);
+    throw new Exception($fullDetail);
+
+}
+
 } catch (Exception $e) {
-    echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+
+    echo json_encode([
+        'status' => 'error',
+        'message' => $e->getMessage()
+    ]);
+
 }
