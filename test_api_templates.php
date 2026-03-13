@@ -111,23 +111,18 @@ if (true) {
     // Substitui as variáveis no texto
     $finalMessage = strtr($template, $vars);
     
-    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
-    $baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'];
-    $publicMediaPath = $baseUrl . '/uploads/Dynamic.png';
-
     $payload = [
         'session' => $session_id,
         'number' => $target_number,
-        'option' => 1, // Usa template dinâmico 1
+        'message' => $finalMessage,
+        'mediaPath' => $publicMediaPath,
         'trackLink' => $trackLink,
-        'name' => 'Christofer (Teste Template)',
-        'language' => $idioma,
-        'mediaPath' => $publicMediaPath
+        'language' => $idioma
     ];
     
-    $resSend = apiRequest('POST', '/api/send-message', $payload, $api_key);
+    $resSend = apiRequest('POST', '/api/send', $payload, $api_key);
     if ($resSend['code'] === 200) {
-        echo "MENSAGEM ENVIADA COM SUCESSO! ✅\n";
+        echo "MENSAGEM ENVIADA COM SUCESSO ✅\n";
     } else {
         echo "FALHA AO ENVIAR: \n";
         print_r($resSend['body']);
