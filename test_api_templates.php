@@ -112,10 +112,10 @@ if (true) {
     $finalMessage = strtr($template, $vars);
     
     $payload = [
-        'session' => $session_id,
+        'sessionId' => $session_id,
         'number' => $target_number,
         'message' => $finalMessage,
-        'mediaPath' => 'C:/Users/Christofer Mayon/Desktop/robo/botzap/uploads/Dynamic.png',
+        'mediaPath' => realpath(__DIR__ . '/uploads/Dynamic.png'),
         'trackLink' => $trackLink,
         'language' => $idioma
     ];
