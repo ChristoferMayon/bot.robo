@@ -16,6 +16,13 @@ try {
     die("Erro de conexão com o banco de dados: " . $e->getMessage());
 }
 
+// Configuração da API do Bot (Interna no Railway ou Externa no Localhost)
+if (getenv('RAILWAY_ENVIRONMENT') || getenv('MYSQLHOST')) {
+    define('BOT_API_URL', 'http://localhost:3000');
+} else {
+    define('BOT_API_URL', getenv('BOT_API_URL') ?: 'http://localhost:3000');
+}
+
 // Security Check
 function checkAuth() {
     if (!isset($_SESSION['user_id'])) {

@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# Inicia o robô de WhatsApp em segundo plano
-echo "Iniciando Robô WhatsApp..."
-cd api/node && node server.js &
+# Inicia o robô de WhatsApp em segundo plano (Força porta 3000 interna)
+echo "Iniciando Robô WhatsApp na porta 3000 interna..."
+cd api/node && PORT=3000 node server.js &
 
 # Inicia o servidor PHP (Nixpacks padrão usa PHP-FPM + Nginx)
 # Mas para simplificar em um container híbrido, podemos usar o servidor embutido

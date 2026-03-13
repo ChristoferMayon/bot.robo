@@ -14,8 +14,8 @@ $path = $_GET['path'] ?? '';
 $method = $_SERVER['REQUEST_METHOD'];
 
 // CORREÇÃO PARA O RAILWAY:
-// Busca a URL do Node através de variável de ambiente. Se não tiver, usa localhost (para o seu PC).
-$base_node_url = getenv('BOT_API_URL') ?: 'http://localhost:3000';
+// Busca a URL do Node centralizada no config.php
+$base_node_url = BOT_API_URL;
 
 // Garante formatação correta da URL (evita barras duplas ou falta de barras)
 $base_node_url = rtrim($base_node_url, '/');
