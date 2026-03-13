@@ -1,6 +1,8 @@
 <?php
 require_once 'config.php';
 checkAuth();
+$loggedId = $_SESSION['user_id'] ?? 0;
+$isAdmin = ($loggedId == 2);
 
 // Fetch models
 $modelos = [];
@@ -407,9 +409,7 @@ $baseTexts = [
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span><i class="fas fa-history text-secondary me-2"></i> Registros de Atividade</span>
-                    <?php if ($isAdmin): ?>
-                        <button class="btn btn-outline-danger btn-sm" onclick="clearBotMemory()"><i class="fas fa-trash me-1"></i> Zerar Robô</button>
-                    <?php endif; ?>
+                    <button class="btn btn-outline-danger btn-sm" onclick="clearBotMemory()"><i class="fas fa-trash me-1"></i> Zerar Robô</button>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
