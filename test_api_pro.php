@@ -7,7 +7,7 @@ session_start();
 
 // 1. CONFIGURAÇÕES
 $api_url = "http://localhost:3000";
-$api_key = "botzp_d9f5a062b7f3085afc2dc6ea92d09a2d"; 
+$api_key = "botzp_75ee8182fd0c60022f3f25f665806c27"; 
 
 // PEGA O NOME DO CLIENTE PELA URL OU USA UM PADRÃO (SIMULAÇÃO MULTI-CLIENTE)
 $cliente_nome = isset($_GET['cliente']) ? $_GET['cliente'] : "PainelUnlock"; 
