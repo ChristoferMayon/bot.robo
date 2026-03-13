@@ -1,10 +1,9 @@
 <?php
-session_start();
 require_once '../config.php';
 
-// Check if user is Admin
-if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] != 2) {
-    echo json_encode(['status' => 'error', 'message' => 'Desculpe, apenas o administrador pode realizar a limpeza total do banco de dados.']);
+// Check if user is Admin (ID 2 is the default for admin)
+if (!isset($_SESSION['user_id']) || (int)$_SESSION['user_id'] !== 2) {
+    echo json_encode(['status' => 'error', 'message' => 'Desculpe, apenas o administrador pode realizar a limpeza total do banco de dados. Sessão ID: ' . ($_SESSION['user_id'] ?? 'N/A')]);
     exit;
 }
 
@@ -13,7 +12,7 @@ try {
     $pdo->exec("DELETE FROM mensagens_enviadas");
 
     // 2. Notify Node.js API to clear all track links
-    $ch = curl_init('http://localhost:3000/clear-all');
+    $ch = curl_init(BOT_API_URL . '/clear-all');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
