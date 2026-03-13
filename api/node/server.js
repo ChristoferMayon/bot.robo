@@ -28,12 +28,13 @@ const PORT = process.env.PORT || 3000;
 const SESSIONS_DIR = path.join(__dirname, 'sessions');
 if (!fs.existsSync(SESSIONS_DIR)) fs.mkdirSync(SESSIONS_DIR, { recursive: true });
 
-// --- Conexão Banco de Dados ---
+// --- Conexão Banco de Dados (Suporta Railway e Localhost) ---
 const dbConfig = {
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_DATABASE || 'botzap'
+    host: process.env.MYSQLHOST || process.env.DB_HOST || 'localhost',
+    user: process.env.MYSQLUSER || process.env.DB_USER || 'root',
+    password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || '',
+    database: process.env.MYSQLDATABASE || process.env.DB_DATABASE || 'botzap',
+    port: process.env.MYSQLPORT || 3306
 };
 const pool = mysql.createPool(dbConfig);
 
