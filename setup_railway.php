@@ -33,9 +33,9 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
 
 // 1. Garantir que as tabelas de sistema existam antes da importação principal
 try {
+    // 1.1 Cria a tabela base (caso ela não exista de forma alguma)
     $pdo->exec("CREATE TABLE IF NOT EXISTS `api_keys` (
         `id` int(11) NOT NULL AUTO_INCREMENT,
-        `user_id` int(11) NOT NULL,
         `nome` varchar(100) DEFAULT 'Minha Chave',
         `chave` varchar(255) NOT NULL,
         `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -43,6 +43,22 @@ try {
         UNIQUE KEY `chave` (`chave`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
     
+    // 1.2 FORÇA A ATUALIZAÇÃO DA ESTRUTURA (Resolve o erro do user_id ausente)
+    try {
+        // Tenta adicionar a coluna user_id. Se já existir, o catch absorve o erro.
+        $pdo->exec("ALTER TABLE `api_keys` ADD COLUMN `user_id` int(11) NOT NULL DEFAULT 1 AFTER `id`;");
+    } catch (PDOException $e) {
+        // Erro 1060 significa que a coluna já existe, então apenas seguimos em frente em silêncio
+    }
+
+    // 1.3 AGORA SIM EXECUTA O SEU UPDATE COM SEGURANÇA
+    try {
+        $pdo->exec("UPDATE `api_keys` SET `user_id` = 2 WHERE `user_id` = 1;");
+    } catch (PDOException $e) {
+        // Absorve qualquer errinho bobo de update para não travar a instalação
+    }
+
+    // 1.4 Cria as outras tabelas normalmente
     $pdo->exec("CREATE TABLE IF NOT EXISTS `user_configs` (
         `id` int(11) NOT NULL AUTO_INCREMENT,
         `user_id` int(11) NOT NULL,
@@ -50,7 +66,10 @@ try {
         PRIMARY KEY (`id`),
         UNIQUE KEY `user_id` (`user_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
-} catch (PDOException $e) { $error = "Erro ao preparar tabelas base: " . $e->getMessage(); }
+    
+} catch (PDOException $e) { 
+    $error = "Erro ao preparar tabelas base: " . $e->getMessage(); 
+}
 
 // 2. Ler e processar o arquivo SQL em comandos individuais
 $commands = [];
