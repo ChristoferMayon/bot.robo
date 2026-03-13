@@ -7,22 +7,21 @@ $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 $username = 'admin';
 
 try {
-    // Tenta atualizar se o usuário existir, ou insere se não existir
-    $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE username = ?");
-    $stmt->execute([$username]);
-    $user = $stmt->fetch();
-
-    if ($user) {
-        $update = $pdo->prepare("UPDATE usuarios SET password = ? WHERE id = ?");
-        $update->execute([$hashedPassword, $user['id']]);
-        $msg = "Sucesso! A senha do usuário <b>$username</b> foi redefinida para: <b style='color:green;'>$newPassword</b>";
-    } else {
-        $insert = $pdo->prepare("INSERT INTO usuarios (username, password) VALUES (?, ?)");
-        $insert->execute([$username, $hashedPassword]);
-        $msg = "Sucesso! Usuário <b>$username</b> criado com a senha: <b style='color:green;'>$newPassword</b>";
-    }
+    // 1. Limpa todos os usuários existentes
+    $pdo->exec("DELETE FROM usuarios");
+    
+    // 2. Reseta o auto-incremento (opcional, dependendo do DB, mas vamos forçar o ID)
+    // 3. Insere o administrador com ID 2 especificamente
+    $insert = $pdo->prepare("INSERT INTO usuarios (id, username, password) VALUES (2, ?, ?)");
+    $insert->execute([$username, $hashedPassword]);
+    
+    $msg = "<b>SISTEMA RESETADO COM SUCESSO!</b><br><br>
+            Apenas um usuário agora existe:<br>
+            Usuário: <b>$username</b><br>
+            Senha: <b style='color:green;'>$newPassword</b><br><br>
+            O ID do administrador foi definido como <b>2</b> para compatibilidade total.";
 } catch (PDOException $e) {
-    $msg = "Erro ao processar: " . $e->getMessage();
+    $msg = "Erro ao processar o reset: " . $e->getMessage();
 }
 ?>
 <!DOCTYPE html>
