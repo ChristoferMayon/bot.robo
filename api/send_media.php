@@ -41,7 +41,7 @@ try {
         throw new Exception("Tipo de envio de imagem não reconhecido para o painel simplificado.");
     }
     
-    $user_id = $_SESSION['user_id'] ?? 2;
+    $user_id = $_SESSION['user_id'] ?? 1;
     $stmtKey = $pdo->prepare("SELECT chave FROM api_keys WHERE user_id = ? LIMIT 1");
     $stmtKey->execute([$user_id]);
     $apiKey = $stmtKey->fetchColumn();

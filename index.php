@@ -2,7 +2,7 @@
 require_once 'config.php';
 checkAuth();
 $loggedId = $_SESSION['user_id'] ?? 0;
-$isAdmin = ($loggedId == 2);
+$isAdmin = ($loggedId == 1);
 
 // Fetch models
 $modelos = [];
