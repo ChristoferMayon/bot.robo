@@ -50,13 +50,17 @@ try {
     $userKeyRow = $stmtKey->fetch();
     $apiKey = $userKeyRow ? $userKeyRow['chave'] : '';
 
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+    $baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'];
+    $publicMediaPath = $baseUrl . (str_starts_with($imagePathForDB, '/') ? '' : '/') . $imagePathForDB;
+
     $payload = json_encode([
         'sessionId' => $sessionId,
         'number' => $numero,
         'message' => $textoFinal,
         'trackLink' => $linkRastreio,
         'language' => $idioma,
-        'mediaPath' => realpath('../' . $imagePathForDB)
+        'mediaPath' => $publicMediaPath
     ]);
 
     $base_node_url = BOT_API_URL;
