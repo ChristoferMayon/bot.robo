@@ -18,9 +18,12 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
         $pdo->exec($query);
         echo json_encode(['success' => true]);
     } catch (PDOException $e) {
-        // Ignora erros de "tabela já existe" (1050) ou "chave duplicada" (1062)
-        if ($e->getCode() == '42S01' || $e->errorInfo[1] == 1050 || $e->errorInfo[1] == 1062) {
-             echo json_encode(['success' => true, 'info' => 'Já existente ou duplicado (Ignorado).']);
+        $errCode = $e->errorInfo[1] ?? 0;
+        // Ignora erros de "já existente": 1050 (Tabela), 1062 (Entrada), 1060 (Coluna), 1061 (Chave), 1068 (PK Múltipla)
+        $ignoredErrors = [1050, 1060, 1061, 1062, 1068];
+        
+        if ($e->getCode() == '42S01' || in_array($errCode, $ignoredErrors)) {
+             echo json_encode(['success' => true, 'info' => 'Estrutura ou dado já existente (Ignorado).']);
         } else {
              echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
