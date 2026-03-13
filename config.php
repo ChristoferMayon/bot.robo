@@ -18,7 +18,8 @@ try {
 
 // Configuração da API do Bot (Interna no Railway ou Externa no Localhost)
 if (getenv('RAILWAY_ENVIRONMENT') || getenv('MYSQLHOST')) {
-    define('BOT_API_URL', 'http://localhost:3000');
+    // URL Pública do seu Robô Node.js no Railway
+    define('BOT_API_URL', 'https://attractive-perfection-production-3529.up.railway.app');
 } else {
     define('BOT_API_URL', getenv('BOT_API_URL') ?: 'http://localhost:3000');
 }
