@@ -33,12 +33,14 @@ $commands = [];
 if (file_exists($sqlFile)) {
     $content = file_get_contents($sqlFile);
     
-    // Remover comentários
+    // Remover comentários de linha e multibloco
     $content = preg_replace('/--.*\n/', '', $content);
     $content = preg_replace('/\/\*.*?\*\//s', '', $content);
     
-    // Separar por ;
-    $tempCommands = explode(';', $content);
+    // Separar comandos por ; MAS mantendo integridade de strings
+    // Usamos uma técnica mais robusta para não quebrar mensagens que contenham ;
+    $tempCommands = preg_split('/;(?=(?:[^\']*\'[^\']*\')*[^\']*$)/', $content);
+
     foreach ($tempCommands as $cmd) {
         $cmd = trim($cmd);
         if (!empty($cmd)) {

