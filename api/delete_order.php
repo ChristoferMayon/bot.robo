@@ -23,7 +23,7 @@ try {
 
     // 2. Notify Node.js API to clear memory
     $payload = json_encode(['number' => $numero]);
-    $ch = curl_init('http://localhost:3000/delete-track');
+    $ch = curl_init('http://127.0.0.1:3000/delete-track');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);

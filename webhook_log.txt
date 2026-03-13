@@ -1,0 +1,183 @@
+[2026-03-13 02:38:34] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"19027059079","message":"","timestamp":"2026-03-13T02:38:34.005Z"}
+-------------------------------------------
+[2026-03-13 02:38:34] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"19027059079","message":"","timestamp":"2026-03-13T02:38:34.017Z"}
+-------------------------------------------
+[2026-03-13 02:38:34] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"19027059079","message":"","timestamp":"2026-03-13T02:38:34.030Z"}
+-------------------------------------------
+[2026-03-13 02:38:34] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"19027059079","message":"","timestamp":"2026-03-13T02:38:34.037Z"}
+-------------------------------------------
+[2026-03-13 02:38:34] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"19027059079","message":"","timestamp":"2026-03-13T02:38:34.061Z"}
+-------------------------------------------
+[2026-03-13 02:38:34] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"19027059079","message":"","timestamp":"2026-03-13T02:38:34.088Z"}
+-------------------------------------------
+[2026-03-13 02:38:35] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"19027059079","message":"","timestamp":"2026-03-13T02:38:35.171Z"}
+-------------------------------------------
+[2026-03-13 02:38:36] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"19027059079","message":"","timestamp":"2026-03-13T02:38:36.171Z"}
+-------------------------------------------
+[2026-03-13 02:38:45] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T02:38:45.195Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:38:52] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"meu amigo por favor","timestamp":"2026-03-13T02:38:52.006Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:39:22] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Quero transar gostoso","timestamp":"2026-03-13T02:39:22.281Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:51:16] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T02:51:16.796Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:51:24] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"1","timestamp":"2026-03-13T02:51:24.841Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:54:57] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T02:54:57.449Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:55:09] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T02:55:09.651Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:57:06] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T02:57:06.146Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:57:22] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T02:57:22.347Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:57:31] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"1","timestamp":"2026-03-13T02:57:31.238Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:57:39] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"1","timestamp":"2026-03-13T02:57:39.402Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 02:58:14] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Kelly de Lima Ristoff","timestamp":"2026-03-13T02:58:14.303Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:22:40] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:22:40.153Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:23:32] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:23:32.811Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:25:49] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:25:49.962Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:26:04] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:26:04.021Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:26:49] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:26:49.666Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:27:04] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:27:04.373Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:28:19] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:28:19.166Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:28:29] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:28:29.144Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:31:21] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:31:21.628Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:31:33] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:31:33.381Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:43:15] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:43:15.907Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:43:29] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:43:29.149Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:44:13] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"1","timestamp":"2026-03-13T03:44:13.681Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:44:36] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:44:36.234Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:47:17] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:47:17.832Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:49:39] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"oi","timestamp":"2026-03-13T03:49:39.881Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:49:50] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:49:50.963Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:53:42] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:53:42.415Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:53:58] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"1","timestamp":"2026-03-13T03:53:58.842Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:54:13] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"1","timestamp":"2026-03-13T03:54:13.849Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:54:32] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:54:32.297Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:54:40] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:54:40.703Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 03:54:59] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T03:54:59.847Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 04:01:25] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T04:01:25.617Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 04:01:34] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T04:01:34.483Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 04:03:49] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T04:03:49.512Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 04:04:03] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"1","timestamp":"2026-03-13T04:04:03.474Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 04:04:17] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"1teste","timestamp":"2026-03-13T04:04:17.062Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 04:04:32] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"help","timestamp":"2026-03-13T04:04:32.073Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 04:13:45] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"status","message":"","timestamp":"2026-03-13T04:13:45.468Z","pushName":"🌸"}
+-------------------------------------------
+[2026-03-13 06:54:41] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T06:54:41.328Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 06:54:48] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"19027059079","message":"","timestamp":"2026-03-13T06:54:48.488Z"}
+-------------------------------------------
+[2026-03-13 06:54:49] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T06:54:48.993Z","pushName":null}
+-------------------------------------------
+[2026-03-13 06:54:55] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T06:54:55.738Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 06:55:04] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T06:55:04.655Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 15:19:46] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T15:19:46.183Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 15:19:49] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T15:19:49.871Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 15:36:36] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"ajuda","timestamp":"2026-03-13T15:36:36.443Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 15:38:20] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"1","timestamp":"2026-03-13T15:38:20.503Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 15:44:32] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T15:44:32.816Z","pushName":"Christofer Mayon"}
+-------------------------------------------
+[2026-03-13 15:45:21] Webhook Recebido:
+JSON: {"session":"PainelUnlock","from":"198711141490829","message":"Ajuda","timestamp":"2026-03-13T15:45:21.405Z","pushName":"Christofer Mayon"}
+-------------------------------------------

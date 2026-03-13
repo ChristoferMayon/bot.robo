@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -11,13 +12,14 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@whiskeysockets/baileys": "^7.0.0-rc.9",
     "axios": "^1.13.5",
     "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "mysql2": "^3.19.1",
     "pino": "^10.3.1",
-    "pupeteer": "^0.0.1",
-    "qrcode": "^1.5.4",
-    "whatsapp-web.js": "github:pedroslopez/whatsapp-web.js#main"
+    "qrcode": "^1.5.4"
   }
 }

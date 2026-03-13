@@ -1,0 +1,27 @@
+[dotenv@17.3.1] injecting env (5) from .env -- tip: ­ƒöÉ prevent building .env in docker: https://dotenvx.com/prebuild
+--- Configura├º├úo Node.js ---
+{ host: 'localhost', user: 'root', password: '', database: 'botzap' }
+
+--- Dados da Tabela api_keys ---
+[
+  { id: 1, user_id: null, chave: 'botzap_secret_key_2025' },
+  {
+    id: 2,
+    user_id: null,
+    chave: 'bz_d4f143dacbd477127113facc46efbfcc'
+  },
+  {
+    id: 12,
+    user_id: 2,
+    chave: 'botzp_7e39feec579b3b54c99b55c5038ab35c'
+  }
+]
+
+--- Dados da Tabela user_configs ---
+[
+  {
+    id: 1,
+    user_id: 2,
+    webhook_url: 'http://localhost:8080/webhook_listener.php'
+  }
+]

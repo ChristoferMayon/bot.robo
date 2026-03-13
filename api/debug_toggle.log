@@ -1,0 +1,11 @@
+[2026-03-13 03:49:33] TogglePause ID: 120 | Number: 554195457772 | Status: pausado | HTTP: 200 | Error:  | Res: {"success":true,"message":"Pausado"}
+[2026-03-13 03:49:45] TogglePause ID: 120 | Number: 554195457772 | Status: ativo | HTTP: 200 | Error:  | Res: {"success":true,"message":"Ativado"}
+[2026-03-13 03:53:52] TogglePause ID: 120 | Number: 554195457772 | Status: pausado | HTTP: 200 | Error:  | Res: {"success":true,"message":"Pausado"}
+[2026-03-13 06:54:29] TogglePause ID: 126 | Number: 554195457772 | Status: pausado | HTTP: 200 | Error:  | Res: {"success":true,"message":"Pausado"}
+[2026-03-13 06:54:30] TogglePause ID: 126 | Number: 554195457772 | Status: ativo | HTTP: 200 | Error:  | Res: {"success":true,"message":"Ativado"}
+[2026-03-13 06:54:49] TogglePause ID: 126 | Number: 554195457772 | Status: pausado | HTTP: 200 | Error:  | Res: {"success":true,"message":"Pausado"}
+[2026-03-13 06:54:59] TogglePause ID: 126 | Number: 554195457772 | Status: ativo | HTTP: 200 | Error:  | Res: {"success":true,"message":"Ativado"}
+[2026-03-13 15:19:35] TogglePause ID: 127 | Number: 554195457772 | Status: pausado | HTTP: 200 | Error:  | Res: {"success":true,"message":"Pausado"}
+[2026-03-13 15:19:48] TogglePause ID: 127 | Number: 554195457772 | Status: ativo | HTTP: 200 | Error:  | Res: {"success":true,"message":"Ativado"}
+[2026-03-13 15:44:24] TogglePause ID: 129 | Number: +554195457772 | Status: pausado | HTTP: 200 | Error:  | Res: {"success":true,"message":"Pausado"}
+[2026-03-13 15:45:18] TogglePause ID: 129 | Number: +554195457772 | Status: ativo | HTTP: 200 | Error:  | Res: {"success":true,"message":"Ativado"}
