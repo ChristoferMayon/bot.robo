@@ -18,9 +18,9 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
         $pdo->exec($query);
         echo json_encode(['success' => true]);
     } catch (PDOException $e) {
-        // Ignora erros de "tabela já existe" para permitir re-instalação parcial
-        if (strpos($e->getMessage(), 'already exists') !== false) {
-             echo json_encode(['success' => true, 'info' => 'Tabela já existente (Ignorado).']);
+        // Ignora erros de "tabela já existe" (1050) ou "chave duplicada" (1062)
+        if ($e->getCode() == '42S01' || $e->errorInfo[1] == 1050 || $e->errorInfo[1] == 1062) {
+             echo json_encode(['success' => true, 'info' => 'Já existente ou duplicado (Ignorado).']);
         } else {
              echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
