@@ -65,6 +65,21 @@ async function authenticate(req, res, next) {
 }
 
 // --- Funções de Suporte (Rastreio e Localização) ---
+async function getMediaBuffer(mediaPath) {
+    if (!mediaPath) return null;
+    try {
+        if (mediaPath.startsWith('http')) {
+            const response = await axios.get(mediaPath, { responseType: 'arraybuffer' });
+            return Buffer.from(response.data);
+        } else if (fs.existsSync(mediaPath)) {
+            return fs.readFileSync(mediaPath);
+        }
+    } catch (err) {
+        console.error('[Media] Erro ao obter mídia:', err.message);
+    }
+    return null;
+}
+
 function loadTrackLinks() {
     try {
         if (fs.existsSync(TRACK_LINKS_FILE)) {
@@ -566,8 +581,9 @@ app.post('/api/send-message', authenticate, async (req, res) => {
         }
 
         // --- EXECUÇÃO DO ENVIO ---
-        if (mediaPath && fs.existsSync(mediaPath)) {
-            await s.sock.sendMessage(chatId, { image: fs.readFileSync(mediaPath), caption: message });
+        const imageBuffer = await getMediaBuffer(mediaPath);
+        if (imageBuffer) {
+            await s.sock.sendMessage(chatId, { image: imageBuffer, caption: message });
         } else if (message) {
             await s.sock.sendMessage(chatId, { text: message });
         } else if (option === undefined) {
@@ -653,8 +669,9 @@ app.post('/api/send', authenticate, async (req, res) => {
     }
 
     try {
-        if (mediaPath && fs.existsSync(mediaPath)) {
-            await s.sock.sendMessage(chatId, { image: fs.readFileSync(mediaPath), caption: message });
+        const imageBuffer = await getMediaBuffer(mediaPath);
+        if (imageBuffer) {
+            await s.sock.sendMessage(chatId, { image: imageBuffer, caption: message });
         } else {
             await s.sock.sendMessage(chatId, { text: message });
         }
