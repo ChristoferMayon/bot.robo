@@ -109,7 +109,8 @@ try {
             'message' => 'Disparo efetuado com sucesso via Aparelho: ' . $sessionId
          ]);
     } else {
-         throw new Exception($errorMessageAPI);
+         $fullDetail = "Cód: $httpCode | cURL: $curlError | Resposta: " . substr($nodeResponse, 0, 100);
+         throw new Exception($fullDetail);
     }
     
 } catch (Exception $e) {
