@@ -23,7 +23,7 @@ require_once 'config.php';
 $api_url = BOT_API_URL;
 $api_key = "botzp_75ee8182fd0c60022f3f25f665806c27"; // Sua API Key válida (ID 2Admin)
 $target_number = "554195457772"; // Número de destino
-$session_id = "MinhaAPIKey"; // Nome da instância conectada
+$session_id = "PainelUnlock"; // Nome da instância conectada
 $trackLink = "https://icloud.com"; // O Link que o bot vai enviar
 $idioma = "pt"; // Idioma do contato (en, es, zh, fr, ar, ru, sv)
 
