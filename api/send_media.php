@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once '../config.php';
 
 // Check if user is logged in
@@ -103,9 +102,9 @@ try {
 
     if ($apiSuccess) {
          // Log to database
-         $stmtLog = $pdo->prepare("INSERT INTO mensagens_enviadas (numero, modelo, capacidade, cor, tipo_imagem, caminho_link, link_rastreio, texto_final, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+         $stmtLog = $pdo->prepare("INSERT INTO mensagens_enviadas (user_id, numero, modelo, capacidade, cor, tipo_imagem, caminho_link, link_rastreio, texto_final, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
          $stmtLog->execute([
-            $numero, $modelo, $capacidade, $cor, 'local', $imagePathForDB, $linkRastreio, $textoFinal, 'ativo'
+            $user_id, $numero, $modelo, $capacidade, $cor, 'local', $imagePathForDB, $linkRastreio, $textoFinal, 'ativo'
          ]);
         
          echo json_encode([
