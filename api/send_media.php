@@ -41,17 +41,10 @@ try {
         throw new Exception("Tipo de envio de imagem não reconhecido para o painel simplificado.");
     }
     
-    $user_id = $_SESSION['user_id'] ?? 1;
+    $user_id = $_SESSION['user_id'] ?? 2; // Fallback para admin
     $stmtKey = $pdo->prepare("SELECT chave FROM api_keys WHERE user_id = ? LIMIT 1");
     $stmtKey->execute([$user_id]);
-    $apiKey = $stmtKey->fetchColumn();
-
-    // Fallback inteligente: se for admin e não tiver chave específica, usa qualquer uma disponível
-    if (!$apiKey && $user_id == 2) {
-        $apiKey = $pdo->query("SELECT chave FROM api_keys LIMIT 1")->fetchColumn();
-    }
-    
-    if (!$apiKey) $apiKey = '';
+    $apiKey = $stmtKey->fetchColumn() ?: '';
 
     $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
     $baseUrl = $protocol . "://" . $_SERVER['HTTP_HOST'];
@@ -116,7 +109,8 @@ try {
             'message' => 'Disparo efetuado com sucesso via Aparelho: ' . $sessionId
          ]);
     } else {
-         throw new Exception($errorMessageAPI);
+         $fullDetail = "Cód: $httpCode | cURL: $curlError | Resposta: " . substr($nodeResponse, 0, 100);
+         throw new Exception($fullDetail);
     }
     
 } catch (Exception $e) {

@@ -1,7 +1,7 @@
 <?php
 require 'config.php';
 
-echo "<h2>🔧 Alteração de ID de Administrador (ID 2 -> ID 1)</h2>";
+echo "<h2>🔧 Alteração de ID de Administrador (ID 1 -> ID 2)</h2>";
 
 try {
     $pdo->beginTransaction();
@@ -16,12 +16,12 @@ try {
         $pdo->exec("DELETE FROM usuarios WHERE id = 1");
     }
 
-    // 2. Altera o ID do admin de 2 para 1
-    $stmtUpdate = $pdo->prepare("UPDATE usuarios SET id = 1 WHERE id = 2 AND username = 'admin'");
+    // 2. Altera o ID do admin de 1 para 2
+    $stmtUpdate = $pdo->prepare("UPDATE usuarios SET id = 2 WHERE id = 1 AND username = 'admin'");
     $stmtUpdate->execute();
     
     if ($stmtUpdate->rowCount() > 0) {
-        echo "✅ Sucesso: O usuário <b>admin</b> agora tem o <b>ID 1</b>.<br>";
+        echo "✅ Sucesso: O usuário <b>admin</b> agora tem o <b>ID 2</b>.<br>";
     } else {
         // Verifica se já é 1
         $checkId1 = $pdo->query("SELECT id FROM usuarios WHERE username = 'admin' AND id = 1")->fetch();
@@ -32,9 +32,9 @@ try {
         }
     }
 
-    // 3. Sincroniza as chaves de API para garantir que pertençam ao ID 1
-    $pdo->exec("UPDATE api_keys SET user_id = 1 WHERE user_id = 2");
-    echo "✅ Chaves de API sincronizadas com o novo ID 1.<br>";
+    // 3. Sincroniza as chaves de API para garantir que pertençam ao ID 2
+    $pdo->exec("UPDATE api_keys SET user_id = 2 WHERE user_id = 1");
+    echo "✅ Chaves de API sincronizadas com o novo ID 2.<br>";
 
     $pdo->commit();
     echo "<br><h3 style='color:green;'>Procedimento concluído! Por favor, faça login novamente.</h3>";

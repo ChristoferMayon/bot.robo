@@ -1,8 +1,8 @@
 <?php
 require_once '../config.php';
 
-// Check if user is Admin (ID 1 is now the default for admin)
-if (!isset($_SESSION['user_id']) || (int)$_SESSION['user_id'] !== 1) {
+// Check if user is Admin (ID 2 is the default for admin)
+if (!isset($_SESSION['user_id']) || (int)$_SESSION['user_id'] !== 2) {
     echo json_encode(['status' => 'error', 'message' => 'Desculpe, apenas o administrador pode realizar a limpeza total do banco de dados. Sessão ID: ' . ($_SESSION['user_id'] ?? 'N/A')]);
     exit;
 }
