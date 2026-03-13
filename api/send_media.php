@@ -59,7 +59,10 @@ try {
         'mediaPath' => realpath('../' . $imagePathForDB)
     ]);
 
-    $ch = curl_init('http://localhost:3000/api/send');
+    $base_node_url = getenv('BOT_API_URL') ?: 'http://localhost:3000';
+    $node_endpoint = rtrim($base_node_url, '/') . '/api/send';
+
+    $ch = curl_init($node_endpoint);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
