@@ -856,7 +856,7 @@ echo $response;
                    <p class="text-white-50 mb-3" style="font-size: 0.9rem;">Ideal para sistemas que precisam interromper a automação temporariamente para um cliente específico:</p>
                    <div class="bg-black p-4 rounded-4 border border-white border-opacity-10 shadow-lg">
                       <pre class="bg-transparent p-0 m-0 text-warning" style="font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap;">&lt;?php
-$ch = curl_init('http://localhost:3000/api/control/pause');
+$ch = curl_init('http://localhost:3000/toggle-pause');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Authorization: Bearer SUA_API_KEY',
