@@ -1,4 +1,6 @@
 <?php
+// 🔴 CORREÇÃO CRÍTICA: Iniciar a sessão para ler o ID do usuário
+session_start(); 
 require_once '../config.php';
 
 // Check if user is Admin (ID 2 is the default for admin)
@@ -12,7 +14,11 @@ try {
     $pdo->exec("DELETE FROM mensagens_enviadas");
 
     // 2. Notify Node.js API to clear all track links
-    $ch = curl_init(BOT_API_URL . '/clear-all');
+    // 🟢 PADRONIZAÇÃO: Buscando a URL de forma segura para evitar erro de barras (//)
+    $botApiUrl = defined('BOT_API_URL') ? BOT_API_URL : (getenv('BOT_API_URL') ?: 'http://127.0.0.1:3000');
+    $apiUrl = rtrim($botApiUrl, '/') . '/clear-all';
+    
+    $ch = curl_init($apiUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
