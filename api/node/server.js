@@ -769,62 +769,114 @@ app.post('/clear-all', (req, res) => {
 
 app.post('/api/control/pause', authenticate, async (req, res) => {
     const { number, pause } = req.body;
-    if (!number) return res.status(400).json({ error: 'Número é obrigatório' });
+
+    if (!number) {
+        return res.status(400).json({ error: 'Número é obrigatório' });
+    }
+
     const clean = number.replace(/\D/g, '');
     const status = pause ? 'pausado' : 'ativo';
 
     try {
-        const [result] = await pool.execute(
+
+        // 🔴 TENTA ATUALIZAR
+        let [result] = await pool.execute(
             "UPDATE mensagens_enviadas SET status = ? WHERE numero = ? AND user_id = ?",
             [status, clean, req.userId]
         );
 
-        if (result.affectedRows > 0) {
-            let found = false;
-            for (const [k, v] of trackLinksMap.entries()) {
-                if (k.startsWith(clean) || v.phone === clean) {
-                    v.paused = !!pause;
-                    trackLinksMap.set(k, v);
-                    found = true;
-                }
-            }
-            if (!found) {
-                trackLinksMap.set(`${clean}@s.whatsapp.net`, {
-                    paused: !!pause,
-                    phone: clean,
-                    link: 'https://icloud.com',
-                    lang: 'pt'
-                });
-            }
-            saveTrackLinks();
-            res.json({ success: true, message: `Status alterado para ${status}` });
-        } else {
-            res.status(404).json({ error: 'Ordem não encontrada' });
+        // 🔵 SE NÃO EXISTIR REGISTRO, CRIA
+        if (result.affectedRows === 0) {
+            await pool.execute(
+                "INSERT INTO mensagens_enviadas (numero, status, user_id) VALUES (?, ?, ?)",
+                [clean, status, req.userId]
+            );
         }
-    } catch (e) { res.status(500).json({ error: e.message }); }
+
+        // 🟢 ATUALIZA MEMÓRIA DO BOT
+        let found = false;
+
+        for (const [k, v] of trackLinksMap.entries()) {
+            if (k.startsWith(clean) || v.phone === clean) {
+                v.paused = !!pause;
+                trackLinksMap.set(k, v);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            trackLinksMap.set(`${clean}@s.whatsapp.net`, {
+                paused: !!pause,
+                phone: clean,
+                link: 'https://icloud.com',
+                lang: 'pt'
+            });
+        }
+
+        saveTrackLinks();
+
+        res.json({
+            success: true,
+            message: `Status alterado para ${status}`
+        });
+
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
 });
 
+
 app.post('/api/control/delete', authenticate, async (req, res) => {
+
     const { number } = req.body;
-    if (!number) return res.status(400).json({ error: 'Número é obrigatório' });
+
+    if (!number) {
+        return res.status(400).json({ error: 'Número é obrigatório' });
+    }
+
     const clean = number.replace(/\D/g, '');
 
     try {
+
         const [result] = await pool.execute(
             "DELETE FROM mensagens_enviadas WHERE numero = ? AND user_id = ?",
             [clean, req.userId]
         );
 
         if (result.affectedRows > 0) {
+
             for (const [k, v] of trackLinksMap.entries()) {
-                if (k.startsWith(clean) || v.phone === clean) trackLinksMap.delete(k);
+                if (k.startsWith(clean) || v.phone === clean) {
+                    trackLinksMap.delete(k);
+                }
             }
+
             saveTrackLinks();
-            res.json({ success: true, message: 'Ordem removida' });
+
+            res.json({
+                success: true,
+                message: 'Ordem removida'
+            });
+
         } else {
-            res.status(404).json({ error: 'Ordem não encontrada' });
+
+            res.status(404).json({
+                error: 'Ordem não encontrada'
+            });
+
         }
-    } catch (e) { res.status(500).json({ error: e.message }); }
+
+    } catch (e) {
+
+        res.status(500).json({
+            error: e.message
+        });
+
+    }
+
 });
 
-app.listen(PORT, () => console.log(`[Server] WhatsApp BOT API na porta ${PORT}`));
+
+app.listen(PORT, () => {
+    console.log(`[Server] WhatsApp BOT API na porta ${PORT}`);
+});
