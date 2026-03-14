@@ -275,7 +275,7 @@ sock.ev.on('messages.upsert', async (m) => {
             [phone]
         );
 
-        if (rows.length && rows[0].status === 'pausado') {
+        if (rows.length && rows[0].status?.toLowerCase() === 'pausado') {
             console.log(`[PAUSE-BLOCK-DB] Atendimento pausado para ${phone}`);
             return;
         }
