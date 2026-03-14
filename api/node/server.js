@@ -545,8 +545,7 @@ app.post('/api/create-session', authenticate, async (req, res) => {
 
     if (sessions.has(session)) {
         const s = sessions.get(session);
-        s.userId = req.userId; // Atualiza o vínculo do usuário
-        console.log(`[Manager] Sessão '${session}' vinculada ao User ID: ${req.userId}`);
+        s.userId = req.userId; 
         return res.json({ success: true, message: 'Sessão vinculada ao usuário com sucesso.', session });
     }
 
@@ -554,13 +553,15 @@ app.post('/api/create-session', authenticate, async (req, res) => {
     res.json({ success: true, message: 'Sessão inicializada e vinculada.', session });
 });
 
-app.get('/api/qrcode/:session', authenticate, (req, res) => {
+// AQUI: Removido o "authenticate" para o QR Code carregar no navegador
+app.get('/api/qrcode/:session', (req, res) => {
     const s = sessions.get(req.params.session);
     if (!s) return res.status(404).json({ error: 'Sessão não encontrada.' });
     res.json({ session: s.id, qr: s.qr });
 });
 
-app.get('/api/status/:session', authenticate, (req, res) => {
+// AQUI: Removido o "authenticate" para o Status carregar no navegador
+app.get('/api/status/:session', (req, res) => {
     const s = sessions.get(req.params.session);
     if (!s) return res.status(404).json({ error: 'Sessão não encontrada.' });
     res.json({ session: s.id, status: s.status, number: s.number });
