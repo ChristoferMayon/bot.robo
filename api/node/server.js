@@ -261,15 +261,6 @@ async function startSession(sessionId, userId = null) {
         if (!msg.message || msg.key.fromMe) return;
         const chatId = msg.key.remoteJid;
         if (chatId.endsWith('@g.us')) return;
-        const phone = chatId.split('@')[0];
-
-    // 🔴 VERIFICA SE O ATENDIMENTO ESTÁ PAUSADO
-    const contactData = trackLinksMap.get(chatId) || trackLinksMap.get(`${phone}@s.whatsapp.net`);
-
-    if (contactData?.paused === true) {
-        console.log(`[PAUSE-BLOCK] Atendimento pausado para ${phone}`);
-        return;
-    }
 
         // DB Webhook Dispatch
         let targetUserId = sessionData.userId;
@@ -331,7 +322,7 @@ async function startSession(sessionId, userId = null) {
             }
         }
 
-        
+        const contactData = trackLinksMap.get(chatId);
         console.log(`[PAUSE-CHECK] Verificando ${chatId}. Pausado? ${contactData?.paused}. Dados:`, JSON.stringify(contactData));
 
         const pushName = msg.pushName ? ` ${msg.pushName}` : '';
