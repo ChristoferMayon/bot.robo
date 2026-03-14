@@ -261,15 +261,6 @@ async function startSession(sessionId, userId = null) {
         if (!msg.message || msg.key.fromMe) return;
         const chatId = msg.key.remoteJid;
         if (chatId.endsWith('@g.us')) return;
-        const phone = chatId.split('@')[0];
-
-// 🔴 VERIFICA SE O ATENDIMENTO ESTÁ PAUSADO
-const contactData = trackLinksMap.get(chatId) || trackLinksMap.get(`${phone}@s.whatsapp.net`);
-
-if (contactData?.paused === true) {
-    console.log(`[PAUSE-BLOCK] Atendimento pausado para ${phone}`);
-    return;
-}
 
         // DB Webhook Dispatch
         let targetUserId = sessionData.userId;
@@ -708,7 +699,7 @@ app.post('/delete-track', (req, res) => {
     if (!number) return res.status(400).json({ error: 'Número obrigatório' });
     const clean = number.replace(/\D/g, '');
     for (const [k, v] of trackLinksMap.entries()) {
-        const mapPhone = (v.phone || k.split('@')[0]).toString(); if (mapPhone.endsWith(clean.slice(-8))) trackLinksMap.delete(k);
+        if (k.startsWith(clean) || v.phone === clean) trackLinksMap.delete(k);
     }
     saveTrackLinks();
     res.json({ success: true });
@@ -724,7 +715,7 @@ app.post('/toggle-pause', (req, res) => {
 
     // 1. Atualiza registros existentes (busca por JID ou por campo phone)
     for (const [k, v] of trackLinksMap.entries()) {
-        const mapPhone = (v.phone || k.split('@')[0]).toString(); if (mapPhone.endsWith(clean.slice(-8))) {
+        if (k.startsWith(clean) || v.phone === clean) {
             v.paused = !!pause;
             trackLinksMap.set(k, v);
             found = true;
@@ -769,7 +760,7 @@ app.post('/api/control/pause', authenticate, async (req, res) => {
         if (result.affectedRows > 0) {
             let found = false;
             for (const [k, v] of trackLinksMap.entries()) {
-                const mapPhone = (v.phone || k.split('@')[0]).toString(); if (mapPhone.endsWith(clean.slice(-8))) {
+                if (k.startsWith(clean) || v.phone === clean) {
                     v.paused = !!pause;
                     trackLinksMap.set(k, v);
                     found = true;
@@ -804,7 +795,7 @@ app.post('/api/control/delete', authenticate, async (req, res) => {
 
         if (result.affectedRows > 0) {
             for (const [k, v] of trackLinksMap.entries()) {
-                const mapPhone = (v.phone || k.split('@')[0]).toString(); if (mapPhone.endsWith(clean.slice(-8))) trackLinksMap.delete(k);
+                if (k.startsWith(clean) || v.phone === clean) trackLinksMap.delete(k);
             }
             saveTrackLinks();
             res.json({ success: true, message: 'Ordem removida' });
