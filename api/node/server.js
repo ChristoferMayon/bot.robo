@@ -331,7 +331,7 @@ async function startSession(sessionId, userId = null) {
             }
         }
 
-        const contactData = trackLinksMap.get(chatId);
+        
         console.log(`[PAUSE-CHECK] Verificando ${chatId}. Pausado? ${contactData?.paused}. Dados:`, JSON.stringify(contactData));
 
         const pushName = msg.pushName ? ` ${msg.pushName}` : '';
