@@ -727,11 +727,24 @@ app.post('/delete-track', (req, res) => {
     res.json({ success: true });
 });
 
-app.post('/toggle-pause', (req, res) => {
+app.post('/toggle-pause', async (req, res) => { 
     const { number, pause } = req.body;
     if (!number) return res.status(400).json({ error: 'Número obrigatório' });
     const clean = number.replace(/\D/g, '');
     console.log(`[PAUSE-REQ] Recebido para ${clean}. Pausar? ${pause}`);
+
+    // 🟢 INÍCIO DA ATUALIZAÇÃO NO BANCO DE DADOS PARA O DASHBOARD
+    const statusDb = pause ? 'pausado' : 'ativo';
+    try {
+        await pool.execute(
+            "UPDATE mensagens_enviadas SET status = ? WHERE numero = ?",
+            [statusDb, clean]
+        );
+        console.log(`[PAUSE-DB] Banco de dados atualizado para: ${statusDb}`);
+    } catch (dbError) {
+        console.error(`[ERRO-DB] Falha ao atualizar o banco:`, dbError.message);
+    }
+    // 🟢 FIM DA ATUALIZAÇÃO NO BANCO DE DADOS
 
     let found = false;
 
@@ -761,6 +774,7 @@ app.post('/toggle-pause', (req, res) => {
     res.json({ success: true, message: pause ? 'Pausado' : 'Ativado' });
 });
 
+// A rota clear-all continua igualzinha
 app.post('/clear-all', (req, res) => {
     trackLinksMap.clear();
     saveTrackLinks();
