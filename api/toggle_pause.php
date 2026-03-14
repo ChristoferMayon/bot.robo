@@ -26,7 +26,13 @@ try {
     $isPaused = ($newStatus === 'pausado');
     $payload = json_encode(['number' => $numero, 'pause' => $isPaused]);
     
-    $ch = curl_init('http://127.0.0.1:3000/toggle-pause');
+    // Pega a URL do Railway nas variáveis de ambiente. Se não achar, usa o localhost para testes no PC.
+    $botApiUrl = getenv('BOT_API_URL') ?: 'http://127.0.0.1:3000';
+    
+    // Monta a URL garantindo que não terá erro de barras duplicadas
+    $apiUrl = rtrim($botApiUrl, '/') . '/toggle-pause';
+    
+    $ch = curl_init($apiUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
