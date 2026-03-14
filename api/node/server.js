@@ -255,12 +255,34 @@ async function startSession(sessionId, userId = null) {
         }
     });
 
-    // Webhook e Auto-Responder
-    sock.ev.on('messages.upsert', async (m) => {
-        const msg = m.messages[0];
-        if (!msg.message || msg.key.fromMe) return;
-        const chatId = msg.key.remoteJid;
-        if (chatId.endsWith('@g.us')) return;
+// Webhook e Auto-Responder
+sock.ev.on('messages.upsert', async (m) => {
+
+    const msg = m.messages[0];
+    if (!msg.message || msg.key.fromMe) return;
+
+    const chatId = msg.key.remoteJid;
+
+    // Ignorar grupos primeiro
+    if (chatId.endsWith('@g.us')) return;
+
+    const phone = chatId.split('@')[0];
+
+    // 🔴 VERIFICA SE ESTÁ PAUSADO NO BANCO
+    try {
+        const [rows] = await pool.execute(
+            "SELECT status FROM mensagens_enviadas WHERE numero = ? ORDER BY id DESC LIMIT 1",
+            [phone]
+        );
+
+        if (rows.length && rows[0].status === 'pausado') {
+            console.log(`[PAUSE-BLOCK-DB] Atendimento pausado para ${phone}`);
+            return;
+        }
+
+    } catch (err) {
+        console.error('[DB PAUSE ERROR]', err.message);
+    }
 
         // DB Webhook Dispatch
         let targetUserId = sessionData.userId;
@@ -302,7 +324,7 @@ async function startSession(sessionId, userId = null) {
             }
 
             if (!foundData) {
-                const phone = chatId.split('@')[0];
+            
                 const phoneTail = phone.slice(-8);
                 for (const [k, v] of trackLinksMap.entries()) {
                     const mapPhone = (v.phone || k.split('@')[0]).toString();
