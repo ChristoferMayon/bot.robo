@@ -37,11 +37,11 @@ if (!fs.existsSync(SESSIONS_DIR)) fs.mkdirSync(SESSIONS_DIR, { recursive: true }
 
 // --- Conexão Banco de Dados (Suporta Railway e Localhost) ---
 const dbConfig = {
-    host: process.env.MYSQLHOST || process.env.DB_HOST || 'localhost',
-    user: process.env.MYSQLUSER || process.env.DB_USER || 'root',
-    password: process.env.MYSQLPASSWORD || process.env.DB_PASSWORD || '',
-    database: process.env.MYSQLDATABASE || process.env.DB_DATABASE || 'botzap',
-    port: process.env.MYSQLPORT || 3306
+    host: 'mysql.railway.internal',
+    user: 'root',
+    password: 'XlyKXyKlEuSUYLZMozTQKJJozizNbwiN',
+    database: 'railway',
+    port: 3306
 };
 const pool = mysql.createPool(dbConfig);
 
