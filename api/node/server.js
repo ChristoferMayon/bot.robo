@@ -11,6 +11,9 @@ require('dotenv').config();
 
 const app = express();
 
+// ADICIONE ESTA LINHA AQUI:
+app.set('trust proxy', 1);
+
 // Configuração corrigida para aceitar Headers de Autenticação
 app.use(cors({
     origin: true, // Isso reflete a origem da requisição, resolvendo o erro de segurança
