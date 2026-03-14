@@ -32,7 +32,7 @@ if (isset($_POST['ajax_action'])) {
     header('Content-Type: application/json');
     $isPaused = ($_POST['ajax_action'] === 'pause');
     
-    $ch = curl_init($api_url . '/api/control/pause');
+    $ch = curl_init($api_url . '/toggle-pause');
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['number' => $target_number, 'pause' => $isPaused]));
