@@ -1,0 +1,48 @@
+https://attractive-perfection-production-3529.up.railway.app/api/stats
+
+TESTAR CONEÇÃO COM NODE  test_connection.php
+
+TESTAR QUICK quick_test.php
+
+
+depois de ligar o banco de dados , link =setup railway importa as tabelas 
+
+
+api pausar robô pause.php
+
+criar qr code enviar teste test_api_pro.php
+
+enviar primeira mensagem test_api_templates.php
+
+conectar na api com outro usuário test_api_pro.php?cliente=Teste2 
+
+========================================================================
+VARIAVIES NODE 
+
+MYSQLDATABASE="${{MySQL.MYSQLDATABASE}}"
+MYSQLHOST="${{MySQL.MYSQLHOST}}"
+MYSQLPASSWORD="${{MySQL.MYSQLPASSWORD}}"
+MYSQLPORT="${{MySQL.MYSQLPORT}}"
+MYSQLUSER="${{MySQL.MYSQLUSER}}"
+
+Root Directory
+Configure where we should look for your code. Docs↗
+Root directory
+
+
+api/node
+
+===========================================================================
+
+VARIAVEIS PHP 
+
+BOT_API_URL="https://attractive-perfection-production-3529.up.railway.app"
+MYSQLDATABASE="${{MySQL.MYSQLDATABASE}}"
+MYSQLHOST="${{MySQL.MYSQLHOST}}"
+MYSQLPASSWORD="${{MySQL.MYSQLPASSWORD}}"
+MYSQLPORT="${{MySQL.MYSQLPORT}}"
+MYSQLUSER="${{MySQL.MYSQLUSER}}"
+
+===========================================================================
+
+criar table user_id int 
