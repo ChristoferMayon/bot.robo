@@ -10,11 +10,15 @@ const mysql = require('mysql2/promise');
 require('dotenv').config();
 
 const app = express();
+
+// Configuração corrigida para aceitar Headers de Autenticação
 app.use(cors({
-    origin: '*',
+    origin: true, // Isso reflete a origem da requisição, resolvendo o erro de segurança
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    credentials: true
 }));
+
 app.use(express.json({ limit: '50mb' }));
 
 // Middleware de Log
